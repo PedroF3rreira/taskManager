@@ -7,7 +7,7 @@
 @section('content')
 
 <!--<section class="vh-100 gradient-custom-2">-->
-  <div class="container ">
+  <div class="container mt-3 ">
   	<div class="border">
 	<div class="tasks-navigation p-2 d-flex justify-content-between align-items-center">
 		<a href="{{ route('task.create') }}" title="newTask" class="btn btn-sm btn-outline-secondary "><i class="bi bi-journal-plus"></i> nova tarefa</a>
