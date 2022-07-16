@@ -16,7 +16,7 @@
 					alt="Check" width="60">
 					<h2 class="my-4">{{ $title }}</h2>
 				</div>
-				<div class="d-flex justify-content-between border-top p-3">
+				<div class="d-flex justify-content-between border p-3">
 					<div class="content">
 						Conteudo:
 					</div>
@@ -24,16 +24,23 @@
 						Status:
 					</div>
 				</div>
-				<div class="d-flex justify-content-between border-top p-2">
-					<div class="content ">
+				<div class="d-flex justify-content-between p-2 border">
+					<div class="content col-8 border p-3">
 						{{ $task->content }}
 					</div>
-					<div class="info">
-						<div>
-							{{$task->created_at}}
+					<div class="info col-4 p-3 border">
+						<div class="d-flex justify-content-between">
+							<div class="">Criada em: </div>
+							<p>{{$task->created_at}}</p>
 						</div>
-						<div>
-							{{$task->updated_at}}	
+						<div class="d-flex justify-content-between">
+							<div>Atualizado em: </div>
+							<p>{{$task->updated_at}}</p>	
+						</div>
+		
+						<div class="d-flex justify-content-between">
+							<div>Status: </div>
+							<p class=" badge bg-{{ $task->status?'success':'warning' }}">{{$task->status?'Concluida':'Pedente'}}</p>	
 						</div>
 						
 					</div>
