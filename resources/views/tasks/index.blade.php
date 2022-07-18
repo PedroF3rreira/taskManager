@@ -73,7 +73,7 @@
                     </form>
           
                     
-                    <form action="{{ route('task.destroy', ['task' => $task->id]) }}" method="post">
+                    <form name="formDeleteTask"  method="post">
                       @csrf
                       @method('DELETE')
                       <button type="submit" data-mdb-toggle="tooltip" title="Deletar" class="border-0 btn btn-outline-danger ">

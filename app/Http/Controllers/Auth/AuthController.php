@@ -38,10 +38,19 @@ class AuthController extends Controller
             
             $request->session()->regenerate();
             
-            return redirect()->route('admin');
+            $login['success'] = true;
+            
+            echo json_encode($login); 
+            
+            return;   
+            
         }
 
-        return redirect()->back()->onlyInput('email')->withErrors('confira sua senha e email');
+        //return redirect()->back()->onlyInput('email')->withErrors('confira sua senha e email');
+        $login['success'] = false;
+        $login['message'] = 'dados não conferem';
+        echo json_encode( $login );
+        return;
     }
 
     /**

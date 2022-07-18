@@ -113,7 +113,11 @@ class TaskController extends Controller
     {
         $task->destroy($task->id);
 
-        return redirect()->route('task.index');
+        $task['success'] = true;
+        echo json_encode($task);
+        return;
+
+        //return redirect()->route('task.index');
     }
 
     /**

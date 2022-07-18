@@ -35,12 +35,12 @@
 						</div>
 						<div class="d-flex justify-content-between">
 							<div>Atualizado em: </div>
-							<p>{{$task->updated_at}}</p>	
+							<p>{{$task->updated_at}}</p>
 						</div>
 		
 						<div class="d-flex justify-content-between">
 							<div>Status: </div>
-							<p class=" badge bg-{{ $task->status?'success':'warning' }}">{{$task->status?'Concluida':'Pedente'}}</p>	
+							<p class=" badge bg-{{ $task->status?'successz':'warning' }}">{{$task->status?'Concluida':'Pedente'}}</p>	
 						</div>
 						
 					</div>

@@ -6,7 +6,7 @@
 
 @section('content')
 	<h3 class="text-center mt-5 ">Sistema Login</h3>
-	
+	<div class="alert alert-danger col-5 mx-auto error" role="alert" style="display:none"></div>
 	@if($errors->all())
 		@foreach($errors->all() as $error)
 			<div class="alert alert-danger col-5 mx-auto" role="alert">
@@ -15,14 +15,14 @@
 		@endforeach
 	@endif
 
-	<form action="{{ route('login.do') }}" method="post" class="col-5 mx-auto border rounded p-3 bg-light ">
+	<form name="formLogin" class="col-5 mx-auto border rounded p-3 bg-light" method="post">
 		@csrf
 		<div class="form-group">
-			<input type="mail" name="email" value="{{ old('email') }}" id="email" class="form-control mb-3 mt-3" placeholder="E-mail:">
+			<input type="mail" name="email" value="{{ old('email') }}" id="email" class="form-control mb-3 mt-3" placeholder="E-mail:" required>
 		</div>
 
 		<div class="form-group">
-			<input type="password" name="password" id="password" class="form-control" placeholder="Password:">
+			<input type="password" name="password" id="password" class="form-control" placeholder="Password:" required>
 		</div>
 		<div class="d-flex flex-column">
 			<input type="submit"  value="Logar" class="btn btn-success mt-3 mb-3">
