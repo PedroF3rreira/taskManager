@@ -5,70 +5,87 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>@yield('title')</title>
-	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
-
+	 @vite([
+	 	'resources/css/app.css', 
+	 	'node_modules/bootstrap/dist/css/bootstrap.min.css',
+	 	'node_modules/bootstrap-icons/font/bootstrap-icons.css'
+	 	]) 
 </head>
-<body >
+<body>
 	<x-navigation>
 		
 	</x-navigation>
 	<div class="container">
 		@yield('content')	
 	</div>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript" ></script>
-
 	
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/gh/jquery-form/form@4.3.0/dist/jquery.form.min.js"></script>
-<script  type="text/javascript">
-	$(function(){
-		$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-		});
-		$('form[name="formLogin"]').submit(function(event) {
-			event.preventDefault();
+	<script src="{{ route('admin') }}/assets/js/jquery-3.6.0.min.js" type="text/javascript" ></script>
+	<script src="{{ route('admin') }}/assets/js/jquery.form.min.js" type="text/javascript" ></script>
+	<script src="{{ route('admin') }}/assets/js/bootstrap.min.js" type="text/javascript" ></script>
+	
+	@vite([
+		'resources/js/app.js',
+		])
+	
+	<script  type="text/javascript">
+		$(function(){
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+
+			/*Requisição ajax para Logar no sistema*/
+			$('form[name="formLogin"]').submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					url: "{{ route('login.do') }}",
+					type: "post",
+					data: $(this).serialize(),
+					dataType: "json",
+					success: function(response){
+						if(response.success === true){		
+							window.location.href = "{{ route('admin') }}";
+						}
+						else{
+							$(".error").css("display","block").html(response.message);
+						}
+					}
+				});
+			});
+
+			/*Requisição ajax para deletar tarefa*/
+			$('form[name=formDeleteTask]').submit(event => {
+				event.preventDefault();
 			
-			$.ajax({
-				url: "{{ route('login.do') }}",
-				type: "post",
-				data: $(this).serialize(),
-				dataType: "json",
-				success: function(response){
-					if(response.success === true){		
-						window.location.href = "{{ route('admin') }}";
+				let id = $(event.target).attr("data");
+
+				$.ajax({
+					url: "http://localhost:8000/tarefas/"+id,
+					type: "delete",
+					data: $(this).serialize(),
+					dataType: "json",
+					success: function(response){
+						if(response.success === true){
+							let el = $(event.target).parent();
+							el.parent().css("display", "none");
+						}
+						else{
+							$(".error").css("display","block").html(response.message);
+						}
+					},
+					beforeSend: function(){
+						$(event.target).find("button#delete").html("Delete...");
+					},
+					beforeComplete: function(){
+						console.log("completo")
 					}
-					else{
-						$(".error").css("display","block").html(response.message);
-					}
-				}
+
+				});
 
 			});
 		});
-
-		$('form[name=formDeleteTask]').submit(event => {
-			event.preventDefault();
-
-			$.ajax({
-				url: "{{ route('task.destroy',$task->id??'') }}",
-				type: "delete",
-				data: $(this).serialize(),
-				dataType: "json",
-				success: function(response){
-					if(response.success === true){		
-						window.location.href = "{{ route('task.index') }}";
-					}
-					else{
-						$(".error").css("display","block").html(response.message);
-					}
-				}
-
-			});
-
-		});
-	});
 </script>
 </body>
 </html>

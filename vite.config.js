@@ -6,6 +6,7 @@ export default defineConfig({
         laravel([
             'resources/css/app.css',
             'resources/js/app.js',
+            'node_modules/bootstrap-icons/bootstrap-icons.css',
         ]),
     ],
 });
