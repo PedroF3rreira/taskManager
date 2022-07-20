@@ -42,8 +42,12 @@ Route::get('/tarefas/busca', [TaskController::class, 'find'])
 ->name('task.find')
 ->middleware('auth');
 
+
 Route::resource('/tarefas', TaskController::class)
 ->names('task')
 ->parameters(['tarefas' => 'task'])
 ->middleware('auth');
 
+Route::patch('/tarefas/{task}', [TaskController::class, 'concludedTask'])
+->name('task.concluded')
+->middleware('auth');

@@ -15,7 +15,7 @@
        
         <!-- Button trigger modal -->
         <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" class="bi bi-x-circle btn btn-danger border-0"></span>
+          <span aria-hidden="true" class="bi bi-x-circle btn btn-outline-danger border-0"></span>
         </button>
 
       </div>
@@ -99,17 +99,17 @@
                   </td>
                   <td class="align-middle">
                     <h6 class="mb-0">
-                    	<span class="badge bg-{{$task->status?'success':'warning'}}">
+                    	<span class="badge bg-{{$task->status?'success':'warning'}} status">
                     		{{ $task->status?'Concluida':'Pendente' }}
                     	</span>
                     </h6>
                   </td>
                   <td class="align-middle d-flex p-3">
                     <!--Atualiza tarefa-->
-                    <form action="" method="post" accept-charset="utf-8">  
+                    <form  data="{{ $task->id }}" method="post" name="formUpdateTask">  
                       @csrf
-                      @method('PUT')
-                      <button href="#!" data-mdb-toggle="tooltip" title="Concluir" class="border-0 btn btn-outline-success">
+                      @method('PATCH')
+                      <button type="submit" data-mdb-toggle="tooltip" title="Concluir" class="border-0 btn btn-{{ $task->status?'':'outline-' }}success">
                         <i class="bi bi-check-circle"></i>
                       </button>
                     </form>

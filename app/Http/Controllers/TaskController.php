@@ -113,8 +113,8 @@ class TaskController extends Controller
     {
         $task->destroy($task->id);
 
-        $task['success'] = true;
-        echo json_encode($task);
+        $result['success'] = true;
+        echo json_encode($result);
         return;
 
         //return redirect()->route('task.index');
@@ -130,5 +130,31 @@ class TaskController extends Controller
         $tasks = Task::where('title', 'like', $request->search.'%')->get();
 
         return null;
+    }
+
+    /**
+     * *
+     * @param  Task   $task 
+     * @return json       
+     */
+    public function concludedTask(Task $task)
+    {
+        $result = [];
+
+        if($task->status === 0){
+            $task->status = 1;
+            $task->save();
+            $result['success'] = true;
+            $result['status'] = $task->status;
+        }
+        else{
+            $task->status = 0;
+            $task->save();
+            $result['success'] = true;
+            $result['status'] = $task->status;   
+        }   
+        
+        echo json_encode($result);
+        return;
     }
 }

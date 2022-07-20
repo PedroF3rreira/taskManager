@@ -6,8 +6,9 @@
 
 @section('content')
 <div class="row d-flex justify-content-center align-items-center h-100 mt-3">
-	<div class="col-md-12 col-xl-12">
 
+	<div class="col-md-12 col-xl-12">
+		<a href="{{ route('task.index') }}" title="Voltar" class="btn btn-outline-secondary mb-2" style="font-size:16px ;"><i class="bi bi-arrow-left">voltar</i> </a>
 		<div class="card mask-custom ">
 			<div class="card-body p-4 text-secondary">
 
@@ -40,7 +41,7 @@
 		
 						<div class="d-flex justify-content-between">
 							<div>Status: </div>
-							<p class=" badge bg-{{ $task->status?'successz':'warning' }}">{{$task->status?'Concluida':'Pedente'}}</p>	
+							<p class=" badge bg-{{ $task->status?'success':'warning' }}">{{$task->status?'Concluida':'Pedente'}}</p>	
 						</div>
 						
 					</div>

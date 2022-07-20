@@ -84,9 +84,59 @@
 					}
 
 				});
+			});
 
+			/**
+			 * requisição ajax para alterar estado da tarefa
+			 */
+			$('form[name=formUpdateTask]').submit(event => {
+				event.preventDefault();
+			
+				let id = $(event.target).attr("data");
+
+				$.ajax({
+					url: "http://localhost:8000/tarefas/"+id,
+					type: "patch",
+					data: $(this).serialize(),
+					dataType: "json",
+					success: function(response){
+						
+						if(response.success === true){
+							
+							let el = $(event.target).parent();
+							let button = $(event.target).find('button');
+							
+							if(response.status === 1){
+								
+								button.removeClass('btn-outline-success');
+								button.addClass('btn-success');
+								el.parent().find('span.status').removeClass('bg-warning').addClass('bg-success');
+								el.parent().find('span.status').html('Concluido');
+
+							}
+							else{
+								button.addClass('btn-outline-success');
+								button.removeClass('btn-success');
+								el.parent().find('span.status').removeClass('bg-success').addClass('bg-warning');
+								el.parent().find('span.status').html('Pendente');	
+							}
+							
+						}
+						else{
+							$(".error").css("display","block").html(response.message);
+						}
+					},
+					beforeSend: function(){
+						$(event.target).find("button#delete").find('i').removeClass("btn-outline-warning");
+						$(event.target).find("button#delete").find('i').addClass("btn-outline-danger");
+					},
+					beforeComplete: function(){
+						console.log("completo")
+					}
+
+				});
 			});
 		});
-</script>
-</body>
-</html>
+		</script>
+	</body>
+	</html>
