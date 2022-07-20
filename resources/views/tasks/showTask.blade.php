@@ -31,11 +31,11 @@
 					<div class="info col-4 p-3 border">
 						<div class="d-flex justify-content-between">
 							<div class="">Criada em: </div>
-							<p>{{$task->created_at}}</p>
+							<p>{{date('d-m-y h:m:s', strtotime($task->created_at))}}</p>
 						</div>
 						<div class="d-flex justify-content-between">
 							<div>Atualizado em: </div>
-							<p>{{$task->updated_at}}</p>
+							<p>{{date('d-m-y h:m:s', strtotime($task->updated_at))}}</p>
 						</div>
 		
 						<div class="d-flex justify-content-between">

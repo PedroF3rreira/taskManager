@@ -92,7 +92,7 @@
                       alt="avatar 1" style="width: 45px; height: auto;">
                     <span class="ms-2">{{ $task->user->name }}</span>
                   </th>
-                  <td class="align-middle ">
+                  <td class="align-middle">
                     <a href="{{ route('task.show',['task' => $task->id]) }}" class="link-secondary">
                       <span>{{ $task->title }}</span>
                     </a>

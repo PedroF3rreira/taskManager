@@ -76,7 +76,8 @@
 						}
 					},
 					beforeSend: function(){
-						$(event.target).find("button#delete").html("Delete...");
+						$(event.target).find("button#delete").find('i').removeClass("bi bi-trash");
+						$(event.target).find("button#delete").find('i').addClass("bi bi-x-circle");
 					},
 					beforeComplete: function(){
 						console.log("completo")
