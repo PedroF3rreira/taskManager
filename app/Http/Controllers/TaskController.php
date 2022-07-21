@@ -145,7 +145,7 @@ class TaskController extends Controller
             $task->status = 1;
             $task->save();
             $result['success'] = true;
-            $result['status'] = $task->status;
+            $result['status'] = $task->status;  
         }
         else{
             $task->status = 0;

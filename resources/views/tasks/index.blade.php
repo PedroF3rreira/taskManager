@@ -46,14 +46,14 @@
   </div>
 </div>
 <!--<section class="vh-100 gradient-custom-2">-->
-  <div class="container mt-3 ">
+  <div class="container">
   	<div class="border">
 	<div class="tasks-navigation p-2 d-flex justify-content-between align-items-center">
 		<button href="{{ route('task.create') }}"  type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">
       <i class="bi bi-journal-plus"></i> nova tarefa
     </button>
 		
-		<form action="{{ route('task.find') }}" class="form-inline" method="get" >
+		<form action="#" class="form-inline" method="get" >
 			<div class="input-group d-flex align-items-center">
 				<div class="input-group-prepend">
 					<button type="submit" class="input-group-text  " id="basic-addon1 "><i class="bi bi-search"></i></button>

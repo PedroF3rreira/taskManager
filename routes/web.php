@@ -38,16 +38,14 @@ Route::get('/logout/do', [AuthController::class, 'logout'])->name('logout.do');
 |Rotas de agenda de tarefas
 |
  */
-Route::get('/tarefas/busca', [TaskController::class, 'find'])
-->name('task.find')
-->middleware('auth');
-
-
 Route::resource('/tarefas', TaskController::class)
 ->names('task')
 ->parameters(['tarefas' => 'task'])
 ->middleware('auth');
 
+/**
+ * rota que leva para método de atualizar status do modelo
+ */
 Route::patch('/tarefas/{task}', [TaskController::class, 'concludedTask'])
 ->name('task.concluded')
 ->middleware('auth');

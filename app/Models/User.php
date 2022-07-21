@@ -42,11 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * *
+     * @return Address retorna um modelo relacionado com o modelo atual
+     */
     public function task()
     {
         return $this->hasOne(Task::class, 'id_user', 'id');
     }
 
+    /**
+     * *
+     * @return Adrress|array retorna uma coleção do modelo realacionado
+     */
     public function tasks()
     {
         return $this->hasMany(Task::class, 'id_user', 'id');
