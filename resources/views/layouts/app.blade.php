@@ -19,9 +19,9 @@
 		@yield('content')	
 	</div>
 	
-	<script src="{{ route('admin') }}/assets/js/jquery-3.6.0.min.js" type="text/javascript" ></script>
-	<script src="{{ route('admin') }}/assets/js/jquery.form.min.js" type="text/javascript" ></script>
-	<script src="{{ route('admin') }}/assets/js/bootstrap.min.js" type="text/javascript" ></script>
+	<script src="{{ url('assets/js/jquery-3.6.0.min.js') }}" type="text/javascript" ></script>
+	<script src="{{ url('assets/js/jquery.form.min.js') }}" type="text/javascript" ></script>
+	<script src="{{ url('assets/js/bootstrap.min.js') }}" type="text/javascript" ></script>
 	
 	@vite([
 		'resources/js/app.js',

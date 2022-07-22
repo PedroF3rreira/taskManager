@@ -15,14 +15,12 @@ class TaskController extends Controller
      */
     public function index()
     {
-
         $tasks = Task::where('id_user', Auth::id())->get();
         
         return view('tasks.index',[
             'title' => 'Agenda de tarefas',
             'tasks' => $tasks,
-        ]);
-        
+        ]);   
     }
 
     /**
@@ -45,7 +43,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'title' => 'required|max:50',
             'status' => 'required|boolean',
             'id_user' => 'required',
@@ -63,7 +61,6 @@ class TaskController extends Controller
         }
 
         return redirect()->back()->withInput()->withErrors('confira os dados');
-
     }
 
     /**
