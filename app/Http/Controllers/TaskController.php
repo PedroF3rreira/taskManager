@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::where('id_user', Auth::id())->orderBy('created_at', 'DESC')->simplePaginate(5);
+        $tasks = Task::where('id_user', Auth::id())->orderBy('created_at', 'DESC')->paginate(5);
         
         return view('tasks.index',[
             'title' => 'Agenda de tarefas',

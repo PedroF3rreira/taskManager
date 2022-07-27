@@ -15,7 +15,7 @@
 		@endforeach
 	@endif
 
-	<form name="formLogin" class="col-5 mx-auto border rounded p-3 bg-light" method="post">
+	<form name="formLogin" class="col-lg-4 col-md-8 col-sm-10 col-xs-12 mx-auto border rounded p-3 bg-light" method="post">
 		@csrf
 		<div class="form-group">
 			<input type="mail" name="email" value="{{ old('email') }}" id="email" class="form-control mb-3 mt-3" placeholder="E-mail:" required>
