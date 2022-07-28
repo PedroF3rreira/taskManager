@@ -19,11 +19,16 @@ class TaskFactory extends Factory
     {
         $user = User::all()->random();
 
+        while(count($user->categories) == 0){
+            $user = User::all()->random();
+        }
+
         return [
             'title' => $this->faker->text(15),
             'status' => $this->faker->boolean(),
             'content' => $this->faker->text(150),
-            'id_user' => $user
+            'id_user' => $user,
+            'category_id' => $user->categories->random()
         ];
     }
 }

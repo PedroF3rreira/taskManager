@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Task;
+use App\Models\Category;
 
 class TaskController extends Controller
 {
@@ -16,10 +17,12 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::where('id_user', Auth::id())->orderBy('created_at', 'DESC')->paginate(5);
-        
+        $categories = Category::all();
+
         return view('tasks.index',[
             'title' => 'Agenda de tarefas',
             'tasks' => $tasks,
+            'categories' => $categories,
         ]);   
     }
 
@@ -47,7 +50,8 @@ class TaskController extends Controller
             'title' => 'required|max:50',
             'status' => 'required|boolean',
             'id_user' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'category' => 'required',
         ]);
         
         $task = new Task();
@@ -55,6 +59,7 @@ class TaskController extends Controller
         $task->status = $request->status;
         $task->id_user = $request->id_user;
         $task->content = $request->content;
+        $task->category_id = $request->category;
 
         if($task->save()){
             return redirect()->route('task.index');

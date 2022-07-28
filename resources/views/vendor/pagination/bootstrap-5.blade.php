@@ -31,9 +31,9 @@
                 <p class="small text-muted">
                     {!! __('Exibindo') !!}
                     <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                    {!! __('de') !!}
-                    <span class="font-medium">{{ $paginator->lastItem() }}</span>
                     {!! __('a') !!}
+                    <span class="font-medium">{{ $paginator->lastItem() }}</span>
+                    {!! __('de') !!}
                     <span class="font-medium">{{ $paginator->total() }}</span>
                     {!! __('resultados') !!}
                 </p>
