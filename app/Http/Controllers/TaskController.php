@@ -159,4 +159,25 @@ class TaskController extends Controller
         echo json_encode($result);
         return;
     }
+
+    public function orderBy(string $search)
+    {
+        $tasks = [];
+
+        switch ($search) {
+            case 'priority':
+               
+                break;
+            
+            default:
+                return null;
+                break;
+        }
+        $categories = Category::all();
+        return view('tasks.index',[
+            'title' => 'Agenda de tarefas',
+            'tasks' => $tasks,
+            'categories' => $categories,
+        ]);   
+    }
 }

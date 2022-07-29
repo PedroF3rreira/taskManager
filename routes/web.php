@@ -43,6 +43,10 @@ Route::resource('/tarefas', TaskController::class)
 ->parameters(['tarefas' => 'task'])
 ->middleware('auth');
 
+Route::get('/tarefas/{search}', [TaskController::class, 'orderBy'])
+->name('task.order')
+->middleware('auth');
+
 /**
  * rota que leva para método de atualizar status do modelo
  */
