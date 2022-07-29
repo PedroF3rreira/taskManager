@@ -162,22 +162,6 @@ class TaskController extends Controller
 
     public function orderBy(string $search)
     {
-        $tasks = [];
-
-        switch ($search) {
-            case 'priority':
-               
-                break;
-            
-            default:
-                return null;
-                break;
-        }
-        $categories = Category::all();
-        return view('tasks.index',[
-            'title' => 'Agenda de tarefas',
-            'tasks' => $tasks,
-            'categories' => $categories,
-        ]);   
+        echo "FILTRO";
     }
 }

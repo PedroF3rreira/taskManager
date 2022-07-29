@@ -43,7 +43,7 @@ Route::resource('/tarefas', TaskController::class)
 ->parameters(['tarefas' => 'task'])
 ->middleware('auth');
 
-Route::get('/tarefas/{search}', [TaskController::class, 'orderBy'])
+Route::get('/tarefas/{search}/filtro', [TaskController::class, 'orderBy'])
 ->name('task.order')
 ->middleware('auth');
 
