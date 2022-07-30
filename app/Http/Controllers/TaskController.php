@@ -23,6 +23,7 @@ class TaskController extends Controller
             'title' => 'Agenda de tarefas',
             'tasks' => $tasks,
             'categories' => $categories,
+            'filterType' => 'sem filtro'
         ]);   
     }
 
@@ -160,8 +161,51 @@ class TaskController extends Controller
         return;
     }
 
+    /**
+     * Filtra resultados e retorna a view task.index com resultados filtrados
+     * @param  string $search tipo de filtro
+     * @return View
+     */
     public function orderBy(string $search)
     {
-        echo "FILTRO";
+        $tasks = [];
+        $categories = Category::all();
+        $type = '';
+
+        switch ($search) {
+            case 'pedding':
+                $tasks = Task::where('id_user', Auth::id())
+                ->where('status', '0')
+                ->paginate(5);
+                if(count($tasks)){
+                    $type = 'tarefas pendentes';
+                }
+                else{
+                    $type = 'não têm tarefas pendentes';
+                }       
+                break;
+            case 'concluded':
+                $tasks = Task::where('id_user', Auth::id())
+                ->where('status', '1')
+                ->paginate(5);
+
+                 if(count($tasks)){
+                    $type = 'tarefas concluidas';
+                }
+                else{
+                    $type = 'não têm tarefas concluidas';
+                }   
+                break;
+            default:
+                return redirect()->route('task.index');
+                
+        }
+
+         return view('tasks.index',[
+            'title' => 'Agenda de tarefas',
+            'tasks' => $tasks,
+            'categories' => $categories,
+            'filterType' => $type
+        ]);   
     }
 }

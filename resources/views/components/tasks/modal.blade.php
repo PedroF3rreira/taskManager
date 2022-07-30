@@ -29,7 +29,7 @@
           <input type="hidden" name="id_user" value="{{ Auth::id() }}">
 
           <select class="form-select mt-3" name="category" aria-label="Default select example">
-            <option selected >Selecione uma categoría</option>
+            
             @foreach( $categories as $category)
               <option value="{{ $category->id }}">{{ $category->title }}</option>
             @endforeach

@@ -1,7 +1,6 @@
-@props(['tasks'])
+@props(['tasks', 'filterType'])
 <div class="row d-flex justify-content-center align-items-center h-100">
   <div class="col-md-12 col-xl-12">
-
     <div class="card mask-custom ">
       <div class="card-body p-4 text-secondary">
 
@@ -10,7 +9,7 @@
           alt="Check" width="60">
           <h2 class="my-4">Lista de Tarefas</h2>
         </div>
-
+        <p class="text-secondary">Filtro: {{ $filterType??'Todas tarefas' }}</p>
         <table class="table mb-0 text-secondary">
           <thead>
             <tr>

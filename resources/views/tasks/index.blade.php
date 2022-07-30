@@ -17,7 +17,7 @@
   <x-tasks.nav />
   
   {{-- Conponente de tarefas --}}
-  <x-tasks :tasks="$tasks">
+  <x-tasks :tasks="$tasks" :filterType="$filterType">
     <x-tasks.item />
   </x-tasks> 
 
