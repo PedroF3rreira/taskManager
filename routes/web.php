@@ -33,23 +33,24 @@ Route::get('/registrar', [AuthController::class, 'showFormRegister'])->name('reg
 Route::post('/registrar/do', [AuthController::class, 'register'])->name('register.do');
 Route::get('/logout/do', [AuthController::class, 'logout'])->name('logout.do');
 
-/*
-|
-|Rotas de agenda de tarefas
-|
- */
+/**
+ * Rotas de agenda de tarefas
+ **/
 Route::resource('/tarefas', TaskController::class)
 ->names('task')
 ->parameters(['tarefas' => 'task'])
 ->middleware('auth');
 
+/**
+ * Rota de filtro de tarefas
+ */
 Route::get('/tarefas/{search}/filtro', [TaskController::class, 'orderBy'])
 ->name('task.order')
 ->middleware('auth');
 
 /**
  * rota que leva para método de atualizar status do modelo
- */
+ **/
 Route::patch('/tarefas/{task}', [TaskController::class, 'concludedTask'])
 ->name('task.concluded')
 ->middleware('auth');

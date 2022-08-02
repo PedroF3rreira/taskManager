@@ -18,7 +18,7 @@ class TaskController extends Controller
     {
         $tasks = Task::where('id_user', Auth::id())->orderBy('created_at', 'DESC')->paginate(5);
         $categories = Category::all();
-
+        
         return view('tasks.index',[
             'title' => 'Agenda de tarefas',
             'tasks' => $tasks,
