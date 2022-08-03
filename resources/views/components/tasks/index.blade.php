@@ -1,5 +1,5 @@
 @props(['tasks', 'filterType'])
-<div class="row d-flex justify-content-center align-items-center h-100">
+<div class="row d-flex justify-content-center align-items-center mt-1">
   <div class="col-md-12 col-xl-12">
     <div class="card mask-custom ">
       <div class="card-body p-4 text-secondary">
