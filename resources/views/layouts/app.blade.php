@@ -39,7 +39,7 @@
 			/*Requisição ajax para Logar no sistema*/
 			$('form[name="formLogin"]').submit(function(event) {
 				event.preventDefault();
-
+				
 				$.ajax({
 					url: "{{ route('login.do') }}",
 					type: "post",
@@ -52,6 +52,17 @@
 						else{
 							$(".error").css("display","block").html(response.message);
 						}
+					},
+					beforeSend: function(){
+			
+						$('form[name="formLogin"]').find('input[type="submit"]').hide();
+						$('form[name="formLogin"]').find('.spinner-border').show();
+
+					},
+					complete: function(){
+						
+						$('form[name="formLogin"]').find('input[type="submit"]').show();
+						$('form[name="formLogin"]').find('.spinner-border').hide();
 					}
 				});
 			});

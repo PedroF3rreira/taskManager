@@ -26,6 +26,11 @@
 		</div>
 		<div class="d-flex flex-column">
 			<input type="submit"  value="Logar" class="btn btn-success mt-3 mb-3">
+			
+			<div class="spinner-border text-success mx-auto mt-2 mb-2" role="status" style="display:none;">
+				<span class="sr-only"></span>
+			</div>
+
 			<div>
 				<p class="text-secondary">não é registrado? <a href="{{ route('register') }}" title="rigistrar" class="font-weight-light">registrar-se</a></p>
 			</div>

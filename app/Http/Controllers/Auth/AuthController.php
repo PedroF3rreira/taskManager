@@ -72,10 +72,9 @@ class AuthController extends Controller
         
         $data = $request->validate([
             'name' => ['required'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users'],
             'password' => ['required']
         ]);
-        
         
         $data['password'] = Hash::make($request->password);
         
