@@ -27,9 +27,9 @@
   <td class="align-middle text-center">
    
    <h6 class="mb-0 ml-3">
-     {{ $task->category->title  }}
+     {{ $task->category->title??''  }}
    </h6> 
-   <div class="rounded" style="background-color: {{  $task->category->color }};height: 10px;">
+   <div class="rounded" style="background-color: {{  $task->category->color??'' }};height: 10px;">
    </div>
 
   </td>
